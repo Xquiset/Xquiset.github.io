@@ -14,7 +14,7 @@ MinerTrouble.Preloader.prototype = {
         this.titleText.anchor.setTo(0.5, 0.5);
         this.load.image('titlescreen', 'Images/Title Logo/Miner Trouble.png');
         this.load.bitmapFont('eightbitwonder', 'Fonts/eightbitwonder.png', 'Fonts/eightbitwonder.fnt');
-        this.load.spritesheet('miner', 'Images/Miner/sprite-miner/sprite-miner.png', 60, 42);
+        this.load.spritesheet('miner', 'Images/Miner/sprite-miner/Miner.png', 15, 30);
         this.load.image('coin', 'Images/Coin/Coin/coin.png');
         this.load.spritesheet('blob', 'Images/blob/sprite-blob/blob.png', 32, 32);
         this.load.spritesheet('pacman', 'Images/Crazy Pacman/sprite-pacman/pacman.png', 32, 32);
@@ -26,8 +26,6 @@ MinerTrouble.Preloader.prototype = {
         this.load.spritesheet('shadowman', 'Images/Shadow Man/sprite-shadowman/shadowman.png', 32, 32);
         this.load.spritesheet('worm', 'Images/Worm/sprite-worm/worm.png', 32, 32);
         this.load.image('level', 'Images/Level/level background.png');
-        this.load.image('rightT', 'Images/Level/right point T.png');
-        this.load.image('leftT', 'Images/Level/left point T.png');
         this.load.image('bar', 'Images/Level/bar.png');
         this.load.image('sidebar', 'Images/Level/sideways bar.png');
     },

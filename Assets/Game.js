@@ -123,20 +123,19 @@ MinerTrouble.Game.prototype = {
     },
     
     buildLevel: function () {
-        //obstacle1
+        //obstacle1 & obstacle2 make right T
         this.obstacle1a = this.add.group();
         this.obstacle1a.enableBody = true;
         this.obstacle1a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle1 = this.obstacle1a.create(80, 80, 'rightT');
+        this.obstacle1 = this.obstacle1a.create(80, 80, 'bar');
         this.obstacle1.body.immovable = true;
         
-        //obstacle2
         this.obstacle2a = this.add.group();
         this.obstacle2a.enableBody = true;
         this.obstacle2a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle2 = this.obstacle2a.create(400, 80, 'leftT');
+        this.obstacle2 = this.obstacle2a.create(80, 120, 'sidebar');
         this.obstacle2.body.immovable = true;
         
         //obstacle3
@@ -144,7 +143,7 @@ MinerTrouble.Game.prototype = {
         this.obstacle3a.enableBody = true;
         this.obstacle3a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle3 = this.obstacle3a.create(240, 200, 'sidebar');
+        this.obstacle3 = this.obstacle3a.create(240, 240, 'sidebar');
         this.obstacle3.body.immovable = true;
         
         //obstacle4
@@ -152,7 +151,7 @@ MinerTrouble.Game.prototype = {
         this.obstacle4a.enableBody = true;
         this.obstacle4a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle4 = this.obstacle4a.create(450, 320, 'bar');
+        this.obstacle4 = this.obstacle4a.create(480, 320, 'bar');
         this.obstacle4.body.immovable = true;
         
         //obstacle5
@@ -160,7 +159,7 @@ MinerTrouble.Game.prototype = {
         this.obstacle5a.enableBody = true;
         this.obstacle5a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle5 = this.obstacle5a.create(40, 320, 'bar');
+        this.obstacle5 = this.obstacle5a.create(80, 320, 'bar');
         this.obstacle5.body.immovable = true;
         
         //obstacle6
@@ -168,7 +167,7 @@ MinerTrouble.Game.prototype = {
         this.obstacle6a.enableBody = true;
         this.obstacle6a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle6 = this.obstacle6a.create(240, 320, 'bar');
+        this.obstacle6 = this.obstacle6a.create(280, 320, 'bar');
         this.obstacle6.body.immovable = true;
         
         //obstacle7
@@ -176,8 +175,24 @@ MinerTrouble.Game.prototype = {
         this.obstacle7a.enableBody = true;
         this.obstacle7a.physicsBodyType = Phaser.Physics.ARCADE;
         
-        this.obstacle7 = this.obstacle7a.create(240, 80, 'bar');
+        this.obstacle7 = this.obstacle7a.create(280, 80, 'bar');
         this.obstacle7.body.immovable = true;
+        
+        //obstacle8 & obstacle9 makes left T
+        this.obstacle8a = this.add.group();
+        this.obstacle8a.enableBody = true;
+        this.obstacle8a.physicsBodyType = Phaser.Physics.ARCADE;
+        
+        this.obstacle8 = this.obstacle8a.create(480, 80, 'bar');
+        this.obstacle8.body.immovable = true;
+        
+        this.obstacle9a = this.add.group();
+        this.obstacle9a.enableBody = true;
+        this.obstacle9a.physicsBodyType = Phaser.Physics.ARCADE;
+        
+        this.obstacle9 = this.obstacle9a.create(400, 120, 'sidebar');
+        this.obstacle9.body.immovable = true;
+
     },
     
     buildCoins: function () {
