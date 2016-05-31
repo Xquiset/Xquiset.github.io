@@ -28,6 +28,8 @@ MinerTrouble.Preloader.prototype = {
         this.load.image('level', 'Images/Level/level background.png');
         this.load.image('bar', 'Images/Level/bar.png');
         this.load.image('sidebar', 'Images/Level/sideways bar.png');
+        this.load.image('left bar', 'Images/Level/left bar.png');
+        this.load.image('top bar', 'Images/Level/top bar.png');
     },
     
     create: function () {

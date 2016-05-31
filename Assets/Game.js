@@ -44,6 +44,8 @@ MinerTrouble.Game = function (game) {
     this.obstacle29;
     this.obstacle30;
     this.obstacle31;
+    this.topbar;
+    this.leftbar;
     
     this.obstacle1a;
     this.obstacle2a;
@@ -76,6 +78,8 @@ MinerTrouble.Game = function (game) {
     this.obstacle29a;
     this.obstacle30a;
     this.obstacle31a;
+    this.topbara;
+    this.leftbara;
 };
 
 MinerTrouble.Game.prototype = {
@@ -119,7 +123,7 @@ MinerTrouble.Game.prototype = {
         this.cursor = this.input.keyboard.createCursorKeys();
         this.player.anchor.set(0.5);
         this.player.checkWorldBounds = true;
-        this.player.events.onOutOfBounds
+        this.player.body.collideWorldBounds = true;
     },
     
     buildLevel: function () {
@@ -192,6 +196,24 @@ MinerTrouble.Game.prototype = {
         
         this.obstacle9 = this.obstacle9a.create(400, 120, 'sidebar');
         this.obstacle9.body.immovable = true;
+        
+        //top obstacle
+        this.topbara = this.add.group();
+        this.topbara.enableBody = true;
+        this.topbara.physicsBodyType = Phaser.Physics.ARCADE;
+        
+        this.topbar = this.topbara.create(0, 0, 'top bar');
+        this.topbar.body.immovable = true;
+        this.topbar.physicdBodyType = Phaser.Physics.ARCADE;
+        
+        //Side bar
+        this.leftbara = this.add.group();
+        this.leftbara.enableBody = true;
+        this.leftbara.physicsBodyType = Phaser.Physics.ARCADE;
+        
+        this.leftbar = this.leftbara.create(-30, 0, 'left bar');
+        this.leftbar.body.immovable = true;
+        this.leftbar.physicsBodyType = Phaser.Physics.ARCADE;
 
     },
     
@@ -240,22 +262,30 @@ MinerTrouble.Game.prototype = {
         this.physics.arcade.collide(this.player, this.obstacle5a, this.playerHitObstacle5, null, this);
         this.physics.arcade.collide(this.player, this.obstacle6a, this.playerHitObstacle6, null, this);
         this.physics.arcade.collide(this.player, this.obstacle7a, this.playerHitObstacle7, null, this);
+        this.physics.arcade.collide(this.player, this.obstacle8a, this.playerHitObstacle8, null, this);
+        this.physics.arcade.collide(this.player, this.obstacle9a, this.playerHitObstacle9, null, this);
+        this.physics.arcade.collide(this.player, this.topbara, this.playerHitTopBar, null, this);
+        this.physics.arcade.collide(this.player, this.leftbara, this.playderHitSide, null, this);
         
 
         if (this.cursor.left.isDown)
         {
             this.player.body.velocity.x = -150;
+            this.player.body.velocity.y = 0;
         }
         else if (this.cursor.right.isDown)
         {
             this.player.body.velocity.x = 150;
+            this.player.body.velocity.y = 0;
         }
         else if (this.cursor.down.isDown)
         {
+            this.player.body.velocity.x = 0;
             this.player.body.velocity.y = 150;
         }
         else if (this.cursor.up.isDown)
         {
+            this.player.body.velocity.x = 0;
             this.player.body.velocity.y = -150;
         }
         else
@@ -290,8 +320,13 @@ MinerTrouble.Game.prototype = {
                 this.physics.arcade.collide(this.player, this.obstacle5a, this.playerHitObstacle5, null, this);
                 this.physics.arcade.collide(this.player, this.obstacle6a, this.playerHitObstacle6, null, this);
                 this.physics.arcade.collide(this.player, this.obstacle7a, this.playerHitObstacle7, null, this);
+                this.physics.arcade.collide(this.player, this.obstacle8a, this.playerHitObstacle8, null, this);
+                this.physics.arcade.collide(this.player, this.obstacle9a, this.playerHitObstacle9, null, this);
+                this.physics.arcade.collide(this.player, this.topbara, this.playerHitTopBar, null, this);
+                this.physics.arcade.collide(this.player, this.leftbara, this.playderHitSide, null, this);
             }
             this.facing = 'idle';
+            this.player.body.velocity.x = 0;
             this.player.body.velocity.y = 0;
         }
     },
@@ -322,4 +357,16 @@ MinerTrouble.Game.prototype = {
     
     playerHitObstacle7: function(_player, _obstacle) {
     },
+    
+    playerHitObstacle8: function(_player, _obstacle) {  
+    },
+    
+    playerHitObstacle9: function(_player, _obstacle) {
+    },
+    
+    playerHitTopBar: function(_player, _obstacle){
+    },
+    
+    playerHitSide: function(_player, _obstacle){
+    }
 };
