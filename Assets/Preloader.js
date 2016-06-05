@@ -30,6 +30,7 @@ MinerTrouble.Preloader.prototype = {
         this.load.image('sidebar', 'Images/Level/sideways bar.png');
         this.load.image('left bar', 'Images/Level/left bar.png');
         this.load.image('top bar', 'Images/Level/top bar.png');
+        this.load.audio('coincollection', 'Sounds/coincollection.wav');
     },
     
     create: function () {
@@ -39,9 +40,5 @@ MinerTrouble.Preloader.prototype = {
     update: function () {
         this.ready = true;
         this.state.start('StartMenu');
-        if(this.cache.isSoundDecoded('game_audio') && this.ready == false){
-            this.ready = true;
-            this.state.start('StartMenu');
-        }
     }
 }
