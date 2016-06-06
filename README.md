@@ -4,4 +4,4 @@
 ### You gotta collect all the treasure before you get collected by what else is in there
 ### There are all sorts of traps and walls down in this cave.  Can you break through them on your way to freedom?
 ### Anything can happen. Nothing is as easy as it seems..
-### The Miner can move in any direction. Even Diagonally!
+### The Miner can move in any of the Cardinal Directions!!
