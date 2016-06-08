@@ -150,6 +150,7 @@ MinerTrouble.Game.prototype = {
         this.buildMiner();
         this.buildCoins();
         this.buildMonsters();
+        this.assignMonsterMovement();
         this.score = this.add.bitmapText(5, 13, 'eightbitwonder', 'Coins Collected- ' + this.coinsCollected, 15);
         this.coinsLeft = this.add.bitmapText(400, 13, 'eightbitwonder', 'Coins Left- ' + this.totalCoins, 15);
         this.health = this.add.bitmapText(900, 13, 'eightbitwonder', 'Health- ' + this.healthPoints, 15);
@@ -169,13 +170,6 @@ MinerTrouble.Game.prototype = {
         this.pacmana.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.pacman = this.pacmana.create(550, 500, 'pacman');
-        
-        //Demon
-        this.demona = this.add.group();
-        this.demona.enableBody = true;
-        this.demona.physicsBodyType = Phaser.Physics.ARCADE;
-        
-        this.demon = this.demona.create(450, 500, 'demon');
         
         //Dirtman
         this.dirtmana = this.add.group();
@@ -204,13 +198,6 @@ MinerTrouble.Game.prototype = {
         this.minibloba.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.miniblob = this.minibloba.create(650, 500, 'miniblob');
-        
-        //Shadowman
-        this.shadowmana = this.add.group();
-        this.shadowmana.enableBody = true;
-        this.shadowmana.physicsBodyType = Phaser.Physics.ARCADE;
-        
-        this.shadowman = this.shadowmana.create(300, 500, 'shadowman');
         
         //worm
         this.worma = this.add.group();
@@ -593,7 +580,15 @@ MinerTrouble.Game.prototype = {
     },
     
     assignMonsterMovement: function () {
-        var powerup = this.game.add.sprite(0, 0, 'powerup');this.game.time.events.loop(2000, function() {  this.game.add.tween(powerup).to({x: this.game.world.randomX, y: this.game.world.randomY}, 1750, Phaser.Easing.Quadratic.InOut, true);}, this)
+        this.game.time.events.loop(2000, function() {  
+            this.game.add.tween(this.eta).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (90 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.worma).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (90 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.minibloba).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (100 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.flameguya).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (100 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.dirtmana).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (100 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.pacmana).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (100 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+            this.game.add.tween(this.bloba).to({x: Math.floor(Math.random() * (90 - 100 + 1)) + 100, y: Math.floor(Math.random() * (100 - 200 + 1)) + 200}, 150, Phaser.Easing.Quadratic.InOut, true);
+        }, this)
     },
 
     update: function () {
@@ -741,51 +736,6 @@ MinerTrouble.Game.prototype = {
         this.physics.arcade.collide(this.pacmana, this.leftbara, this.playderHitObstacle, null, this);
         this.physics.arcade.collide(this.pacmana, this.bottombara, this.playerHitObstacle, null, this);
         this.physics.arcade.collide(this.pacmana, this.rightbara, this.playerHitObstacle, null, this);
-        
-        /*
-        //demon hits obstacle
-        this.physics.arcade.collide(this.demona, this.obstacle1a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle2a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle3a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle4a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle5a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle6a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle7a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle8a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle9a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle10a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle11a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle12a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle13a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle14a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle15a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle16a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle17a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle18a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle19a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle20a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle21a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle22a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle23a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle24a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle25a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle26a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle27a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle28a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle29a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle30a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle31a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle32a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle33a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle34a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle35a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstacle36a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.obstaclefixa, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.topbara, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.leftbara, this.playderHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.bottombara, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.demona, this.rightbara, this.playerHitObstacle, null, this);
-        */
         
         //dirtman hits obstacle
         this.physics.arcade.collide(this.dirtmana, this.obstacle1a, this.playerHitObstacle, null, this);
@@ -958,51 +908,6 @@ MinerTrouble.Game.prototype = {
         this.physics.arcade.collide(this.minibloba, this.leftbara, this.playderHitObstacle, null, this);
         this.physics.arcade.collide(this.minibloba, this.bottombara, this.playerHitObstacle, null, this);
         this.physics.arcade.collide(this.minibloba, this.rightbara, this.playerHitObstacle, null, this);
-        
-        /*
-        //shadowman hits obstacle
-        this.physics.arcade.collide(this.shadowmana, this.obstacle1a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle2a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle3a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle4a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle5a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle6a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle7a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle8a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle9a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle10a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle11a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle12a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle13a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle14a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle15a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle16a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle17a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle18a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle19a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle20a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle21a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle22a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle23a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle24a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle25a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle26a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle27a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle28a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle29a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle30a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle31a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle32a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle33a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle34a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle35a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstacle36a, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.obstaclefixa, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.topbara, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.leftbara, this.playderHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.bottombara, this.playerHitObstacle, null, this);
-        this.physics.arcade.collide(this.shadowmana, this.rightbara, this.playerHitObstacle, null, this);
-        */
         
         //worm hits obstacle
         this.physics.arcade.collide(this.worma, this.obstacle1a, this.playerHitObstacle, null, this);
@@ -1233,51 +1138,6 @@ MinerTrouble.Game.prototype = {
                 this.physics.arcade.collide(this.pacmana, this.leftbara, this.playderHitObstacle, null, this);
                 this.physics.arcade.collide(this.pacmana, this.bottombara, this.playerHitObstacle, null, this);
                 this.physics.arcade.collide(this.pacmana, this.rightbara, this.playerHitObstacle, null, this);
-                
-                /*
-                //demon hits obstacle
-                this.physics.arcade.collide(this.demona, this.obstacle1a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle2a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle3a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle4a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle5a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle6a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle7a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle8a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle9a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle10a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle11a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle12a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle13a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle14a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle15a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle16a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle17a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle18a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle19a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle20a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle21a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle22a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle23a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle24a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle25a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle26a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle27a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle28a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle29a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle30a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle31a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle32a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle33a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle34a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle35a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstacle36a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.obstaclefixa, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.topbara, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.leftbara, this.playderHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.bottombara, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.demona, this.rightbara, this.playerHitObstacle, null, this);
-                */
 
                 //dirtman hits obstacle
                 this.physics.arcade.collide(this.dirtmana, this.obstacle1a, this.playerHitObstacle, null, this);
@@ -1450,51 +1310,6 @@ MinerTrouble.Game.prototype = {
                 this.physics.arcade.collide(this.minibloba, this.leftbara, this.playderHitObstacle, null, this);
                 this.physics.arcade.collide(this.minibloba, this.bottombara, this.playerHitObstacle, null, this);
                 this.physics.arcade.collide(this.minibloba, this.rightbara, this.playerHitObstacle, null, this);
-                
-                /*
-                //shadowman hits obstacle
-                this.physics.arcade.collide(this.shadowmana, this.obstacle1a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle2a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle3a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle4a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle5a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle6a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle7a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle8a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle9a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle10a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle11a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle12a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle13a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle14a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle15a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle16a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle17a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle18a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle19a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle20a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle21a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle22a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle23a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle24a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle25a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle26a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle27a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle28a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle29a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle30a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle31a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle32a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle33a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle34a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle35a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstacle36a, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.obstaclefixa, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.topbara, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.leftbara, this.playderHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.bottombara, this.playerHitObstacle, null, this);
-                this.physics.arcade.collide(this.shadowmana, this.rightbara, this.playerHitObstacle, null, this);
-                */
         
                 //worm hits obstacle
                 this.physics.arcade.collide(this.worma, this.obstacle1a, this.playerHitObstacle, null, this);
@@ -1559,7 +1374,7 @@ MinerTrouble.Game.prototype = {
     },
     
     playerHitMonster: function(_player, _monster) {
-        this.healthPoints -= 100;
+        this.healthPoints -= 10;
         this.checkHealth();
     }
 };
