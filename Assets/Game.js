@@ -163,6 +163,7 @@ MinerTrouble.Game.prototype = {
         this.bloba.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.blob = this.bloba.create(500, 500, 'blob');
+        this.blob.body.immovable = true;
         
         //Pacman
         this.pacmana = this.add.group();
@@ -170,6 +171,7 @@ MinerTrouble.Game.prototype = {
         this.pacmana.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.pacman = this.pacmana.create(550, 500, 'pacman');
+        this.pacman.body.immovable = true;
         
         //Dirtman
         this.dirtmana = this.add.group();
@@ -177,6 +179,7 @@ MinerTrouble.Game.prototype = {
         this.dirtmana.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.dirtman = this.dirtmana.create(400, 500, 'dirtman');
+        this.dirtman.body.immovable = true;
         
         //ET
         this.eta = this.add.group();
@@ -184,6 +187,7 @@ MinerTrouble.Game.prototype = {
         this.eta.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.et = this.eta.create(350, 500, 'et');
+        this.et.body.immovable = true;
         
         //Flameguy
         this.flameguya = this.add.group();
@@ -191,6 +195,7 @@ MinerTrouble.Game.prototype = {
         this.flameguya.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.flameguy = this.flameguya.create(600, 500, 'flameguy');
+        this.flameguy.body.immovable = true;
         
         //Miniblob
         this.minibloba = this.add.group();
@@ -198,6 +203,7 @@ MinerTrouble.Game.prototype = {
         this.minibloba.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.miniblob = this.minibloba.create(650, 500, 'miniblob');
+        this.miniblob.body.immovable = true;
         
         //worm
         this.worma = this.add.group();
@@ -205,6 +211,7 @@ MinerTrouble.Game.prototype = {
         this.worma.physicsBodyType = Phaser.Physics.ARCADE;
         
         this.worm = this.worma.create(700, 500, 'worm');
+        this.worm.body.immovable = true;
     },
     
     buildMiner: function () {
@@ -565,6 +572,16 @@ MinerTrouble.Game.prototype = {
     checkHealth: function () {
         if(this.healthPoints <= 0){
             this.gameover = true;
+            this.player.kill();
+            /*
+            this.bloba.kill();
+            this.dirtman.kill();
+            this.et.kill();
+            this.pacman.kill();
+            this.miniblob.kill();
+            this.worm.kill();
+            this.flameguy.kill();
+            */
             this.health.setText('Health: 0');
             this.overmessage = this.add.bitmapText(this.world.centerX-180, this.world.centerY-40, 'eightbitwonder', 'GAME OVER\n\n' + this.coinsCollected, 42);
             this.overmessage.align = "center";
