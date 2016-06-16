@@ -31,6 +31,7 @@ MinerTrouble.Preloader.prototype = {
         this.load.image('left bar', 'Images/Level/left bar.png');
         this.load.image('top bar', 'Images/Level/top bar.png');
         this.load.audio('coincollection', 'Sounds/coincollection.wav');
+        this.load.audio('hurt', 'Sounds/hurt.wav');
     },
     
     create: function () {

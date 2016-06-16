@@ -11,7 +11,7 @@ MinerTrouble.Game = function (game) {
     this.score;
     this.music;
     this.coinCollectionSound;
-    this.ouch;
+    this.hurtSound;
     this.health;
     this.healthPoints;
     this.cursor;
@@ -117,6 +117,7 @@ MinerTrouble.Game.prototype = {
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.coinCollectionSound = this.add.audio('coincollection');
+        this.hurtSound = this.add.audio('hurt');
         this.gameover = false;
         this.building = true;
         this.totalCoins = 100;
@@ -1427,6 +1428,7 @@ MinerTrouble.Game.prototype = {
     },
     
     playerHitMonster: function(_player, _monster) {
+        this.hurtSound.play('', 0, 0,3, false);
         this.healthPoints -= 10;
         this.checkHealth();
     }
